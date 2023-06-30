@@ -1,3 +1,4 @@
+import React from 'react';
 import s from './App.module.css';
 import Container from "./Components/Container/Container.tsx";
 
