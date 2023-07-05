@@ -7,31 +7,52 @@
 
 .mainContainer {
   position: relative;
+  background: url('../../assets/blue-sky.jpg') no-repeat;
+  image-resolution: normal;
+  padding: 20px 50px;
 
     .weatherIcon {
       position: absolute;
       width: 120px;
       height: auto;
-      right: 0;
-      top: 0;
+      right: 20px;
+      top: 20px;
+    }
+
+    .data-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 400px;
+      height: auto;
+
+      .extraInfoContainer {
+        margin-top: 50px;
+        display: flex;
+        gap: 30px;
+
+        .extraInfo {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+
+          .extraInfoData {
+            @include font (24px, black, 'Inter, sans-serif', 700)
+          }
+        }
+      }
+
+      .city {
+        @include font (24px, black, 'Inter, sans-serif', 400)
+      }
+
+      .temp {
+        @include font (44px, black, 'Inter, sans-serif', 700)
+      }
     }
 }
 
-.data-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-  height: auto;
-
-  .city {
-    @include font (24px, black, 'Inter, sans-serif', 400)
-  }
-
-  .temp {
-    @include font (44px, black, 'Inter, sans-serif', 700)
-  }
-}
 
 
 

@@ -1,12 +1,9 @@
 .App {
   text-align: left;
-  display: flex;
-  width: 400px;
-  height: 280px;
+  max-width: 500px;
+  height: 400px;
   margin: 15px auto 0;
-  border: 1px solid cornflowerblue;
   border-radius: 2px;
-  padding: 10px;
 }
 
 
