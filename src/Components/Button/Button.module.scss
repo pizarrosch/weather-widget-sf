@@ -1,0 +1,26 @@
+.button {
+  height: 40px;
+  width: max-content;
+  border: none;
+  border-radius: 5px;
+  transition: 400ms;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  background-color: transparent;
+  font-family: Inter, sans-serif;
+  cursor: pointer;
+
+   img {
+     width: 30px;
+     height: 30px;
+   }
+
+  .activeButton {
+    background-color: cornflowerblue;
+  }
+}
+
+.button:hover {
+  background-color: lightgray;
+  transition: 400ms;
+}
+

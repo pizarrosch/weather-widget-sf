@@ -1,4 +1,5 @@
 import React, {ChangeEventHandler, KeyboardEventHandler} from "react";
+import s from './Input.module.scss';
 
 function Input({onChange, onSubmit, value}: {
   onChange: ChangeEventHandler,
@@ -6,7 +7,13 @@ function Input({onChange, onSubmit, value}: {
   value: string
 }) {
   return (
-    <input onChange={onChange} onKeyDown={onSubmit} value={value}/>
+    <input
+      className={s.input}
+      onChange={onChange}
+      onKeyDown={onSubmit}
+      value={value}
+      placeholder='Search for the city here...'
+    />
   )
 }
 

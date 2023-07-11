@@ -10,6 +10,11 @@
   background: url('../../assets/blue-sky.jpg') no-repeat;
   image-resolution: normal;
   padding: 20px 50px;
+  border-radius: 10px;
+
+    h2 {
+      color: white;
+    }
 
     .weatherIcon {
       position: absolute;
@@ -17,6 +22,7 @@
       height: auto;
       right: 20px;
       top: 20px;
+      opacity: 1;
     }
 
     .data-container {
@@ -38,17 +44,21 @@
           gap: 10px;
 
           .extraInfoData {
-            @include font (24px, black, 'Inter, sans-serif', 700)
+            @include font (24px, white, 'Inter, sans-serif', 700)
+          }
+
+          span {
+            color: white;
           }
         }
       }
 
       .city {
-        @include font (24px, black, 'Inter, sans-serif', 400)
+        @include font (24px, white, 'Inter, sans-serif', 400)
       }
 
       .temp {
-        @include font (44px, black, 'Inter, sans-serif', 700)
+        @include font (44px, white, 'Inter, sans-serif', 700)
       }
     }
 }

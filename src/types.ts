@@ -5,8 +5,3 @@ export type TWeatherState = {
   feelsLike: string,
   windSpeed: string
 }
-
-export type TSearchedWeatherData = {
-  lat: number,
-  long: number
-}
