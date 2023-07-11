@@ -1,4 +1,4 @@
-@mixin font ($size, $color, $family, $weight) {
+@mixin font($size, $color, $family, $weight) {
   font-size: $size;
   font-family: $family;
   color: $color;
@@ -7,60 +7,70 @@
 
 .mainContainer {
   position: relative;
-  background: url('../../assets/blue-sky.jpg') no-repeat;
+  //background: url('../../assets/blue-sky.jpg') no-repeat;
   image-resolution: normal;
   padding: 20px 50px;
   border-radius: 10px;
 
-    h2 {
-      color: white;
-    }
+  h2 {
+    color: white;
+  }
 
-    .weatherIcon {
-      position: absolute;
-      width: 120px;
-      height: auto;
-      right: 20px;
-      top: 20px;
-      opacity: 1;
-    }
+  .weatherIcon {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    right: 20px;
+    top: 20px;
+    opacity: 1;
+  }
 
-    .data-container {
+  .data-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: auto;
+
+    .extraInfoContainer {
+      margin-top: 50px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 400px;
-      height: auto;
+      gap: 30px;
 
-      .extraInfoContainer {
-        margin-top: 50px;
+      .extraInfo {
         display: flex;
-        gap: 30px;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
 
-        .extraInfo {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
+        .extraInfoData {
+          @include font(24px, white, 'Inter, sans-serif', 700)
+        }
 
-          .extraInfoData {
-            @include font (24px, white, 'Inter, sans-serif', 700)
-          }
-
-          span {
-            color: white;
-          }
+        span {
+          color: white;
         }
       }
-
-      .city {
-        @include font (24px, white, 'Inter, sans-serif', 400)
-      }
-
-      .temp {
-        @include font (44px, white, 'Inter, sans-serif', 700)
-      }
     }
+
+    .city {
+      @include font(24px, white, 'Inter, sans-serif', 400)
+    }
+
+    .temp {
+      @include font(44px, white, 'Inter, sans-serif', 700)
+    }
+  }
+}
+
+.dayBg {
+  background: url('../../assets/blue-sky.jpg') no-repeat;
+  background-size: cover;
+}
+
+.nightBg {
+  background: url('../../assets/night-sky.jpg') no-repeat;
+  background-size: cover;
 }
 
 

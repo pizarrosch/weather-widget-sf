@@ -1,14 +1,12 @@
 import React, {ChangeEvent, useEffect, useState, useCallback} from 'react';
-import s from './App.module.css';
+import s from './App.module.scss';
 import Container from "./Components/Container/Container.tsx";
 import Input from "./Components/Input/Input.tsx";
 import {keyboardKey} from "@testing-library/user-event";
 import {TWeatherState} from "./types.ts";
 import Button from "./Components/Button/Button.tsx";
 import geolocationImg from './assets/gps.png';
-import searchIcon from './assets/seacrhIcon.png';
-import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary.tsx";
-import {logDOM} from "@testing-library/react";
+import searchIcon from './assets/magnifying-glass.svg';
 
 function App() {
 
@@ -22,6 +20,10 @@ function App() {
     feelsLike: '',
     windSpeed: ''
   });
+  const [dayTime, setDayTime] = useState({
+    day: false,
+    night: false
+  })
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [city, setCity] = useState('');
@@ -67,8 +69,14 @@ function App() {
     fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${searchedWeatherData.lat || lat}&lon=${searchedWeatherData.long || long}&appid=3f8c6d14710f3295f0da06c00d91efaa`)
       .then(response => response.json())
       .then(data => {
+          console.log(data)
           data.current.weather.map((weatherInfo: any) => setWeatherState(weatherInfo.main))
           setCloudsVolume(data.current.clouds);
+
+          data.current.dt > data.current.sunrise && data.current.dt < data.current.sunset ?
+            setDayTime({day: true, night: false}) :
+            setDayTime({day: false, night: true});
+
           setWeatherCondition({
             temp: setKelvinToCelsius(data.current.temp),
             pressure: data.current.pressure,
@@ -103,7 +111,7 @@ function App() {
   function handleSubmit(e: keyboardKey) {
     if (e.key === 'Enter') {
       setCityExists(true);
-      setTypedCityName(inputValue);
+      setTypedCityName(inputValue)
       setInputValue('');
 
     }
@@ -148,6 +156,10 @@ function App() {
     setActiveTodayButton(false);
   }
 
+  function removeErrorMessage() {
+    setCityExists(true);
+  }
+
   window.onclick = () => setCityExists(true);
 
   return (
@@ -164,18 +176,27 @@ function App() {
       <Container
         activeToday={activeTodayButton}
         activeFiveDays={activeFiveDayButton}
-        city={city} typedCity={typedCityName}
+        city={city}
+        typedCity={typedCityName}
         weatherState={weatherState}
         weatherCondition={weatherCondition}
         cloudsVolume={cloudsVolume}
         actualDateInMs={actualDateInMs}
         nextDayData={nextDayData}
         weatherStateNextDays={weatherStateNextDays}
+        dayTime={dayTime.day}
+        nightTime={dayTime.night}
       />
-      {!cityExists && <div>
-        <div className={s.backdrop}></div>
-        <div className={s.errorMessage}>City not found. Please enter the right name of the city!</div>
-      </div>}
+      {!cityExists &&
+        <div>
+          <div className={s.backdrop}></div>
+          <div className={s.errorMessage}>
+            City not found. Please enter the right name of the city!
+            <hr/>
+            <span className={s.closeButton} onClick={removeErrorMessage}>Got it!</span>
+          </div>
+        </div>
+      }
     </div>
   );
 }

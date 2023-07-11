@@ -1,0 +1,74 @@
+html {
+  position: relative;
+}
+
+.App {
+  text-align: left;
+  max-width: 500px;
+  height: 400px;
+  margin: 15px auto 0;
+  border-radius: 2px;
+
+  .formContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+  }
+
+  .showWeatherButtonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+
+  .backdrop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: black;
+    opacity: 0.9;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .errorMessage {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    padding: 20px 15px;
+    width: 469px;
+    height: 100px;
+    color: black;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    background-color: #ffffff;
+    margin-left: -250px;
+    margin-top: -50px;
+  }
+
+  hr {
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 15px;
+  }
+
+  .closeButton {
+    color: cornflowerblue;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+}
+
+
+

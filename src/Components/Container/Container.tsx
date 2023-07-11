@@ -3,9 +3,11 @@ import s from './Container.module.scss';
 import rainImg from '../../assets/rain.png';
 import sunImg from '../../assets/sun.png';
 import cloudImg from '../../assets/clouds.png';
-import sunWithCloud from '../../assets/sun-with-clouds.png'
+import sunWithCloud from '../../assets/sun-with-clouds.png';
+import theMoon from '../../assets/moon.png';
 import {TWeatherState} from "../../types.ts";
 import WeatherCard from "../WeatherCard/WeatherCard.tsx";
+import cx from 'classnames';
 
 function Container(
   {
@@ -18,7 +20,9 @@ function Container(
     activeFiveDays,
     actualDateInMs,
     nextDayData,
-    weatherStateNextDays
+    weatherStateNextDays,
+    dayTime,
+    nightTime
   }:
     {
       city: string,
@@ -30,20 +34,30 @@ function Container(
       activeFiveDays: boolean,
       actualDateInMs: number,
       nextDayData: Array<any>,
-      weatherStateNextDays: string[]
+      weatherStateNextDays: string[],
+      dayTime: boolean,
+      nightTime: boolean
     }) {
+
+  function getImgSrc() {
+    switch (weatherState) {
+      case 'Rain':
+        return rainImg;
+      case "Clouds":
+        if (cloudsVolume > 95) return cloudImg;
+        if (cloudsVolume < 95 && cloudsVolume > 0) return sunWithCloud;
+      default:
+        return dayTime ? sunImg : theMoon;
+    }
+
+  }
 
   return (
     <div
-      className={s.mainContainer}
-
+      className={cx(s.mainContainer, dayTime ? s.dayBg : s.nightBg)}
     >
       <h2>Weather</h2>
-      {activeToday ? <img className={s.weatherIcon} src={
-        weatherState === 'Rain' ? rainImg :
-          weatherState === 'Clouds' && cloudsVolume > 95 ? cloudImg :
-            weatherState === 'Clouds' && cloudsVolume < 95 && cloudsVolume > 0 ? sunWithCloud :
-              sunImg}
+      {activeToday ? <img className={s.weatherIcon} src={getImgSrc()}
       /> : ''}
       <div className={s['data-container']}>
         <span className={s.city}>{typedCity ? typedCity : city}</span>

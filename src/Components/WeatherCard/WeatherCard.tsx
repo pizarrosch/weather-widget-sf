@@ -11,7 +11,7 @@ function weatherCard({weatherState, temp, actualDateInMs, nextDayData, weatherSt
                          temp: string,
                          actualDateInMs: number,
                          nextDayData: Array<any>,
-                         weatherStateNextDays: string[]
+                         weatherStateNextDays: string[],
                        }) {
 
   const today = Date.now();
