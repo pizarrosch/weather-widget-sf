@@ -21,6 +21,10 @@
   border: none;
   border-radius: 5px;
   color: white;
+
+  &:hover {
+    color: black;
+  }
 }
 
 .button:hover {

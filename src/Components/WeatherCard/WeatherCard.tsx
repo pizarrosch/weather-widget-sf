@@ -25,13 +25,13 @@ function weatherCard({weatherState, temp, actualDateInMs, nextDayData, weatherSt
 
   return (
     <div className={s.weatherCardsWrapper}>
-      {slicedToFiveDaysArr.map((date) => {
+      {slicedToFiveDaysArr.map((date, index) => {
           const dayInMs = Number((date.dt * factor).toFixed());
           const dateAsDate = new Date(dayInMs)
           const weekday = dateAsDate.toLocaleString("en-US", {weekday: "long"})
 
           return (
-            <div className={s.weatherCardContainer}>
+            <div key={index} className={s.weatherCardContainer}>
               <span className={s.weatherSuperscriptData}>{weekday}</span>
               <span className={s.weatherCardData}>{setKelvinToCelcius(date.temp.day)}°C</span>
               <img src={

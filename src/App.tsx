@@ -69,7 +69,6 @@ function App() {
     fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${searchedWeatherData.lat || lat}&lon=${searchedWeatherData.long || long}&appid=3f8c6d14710f3295f0da06c00d91efaa`)
       .then(response => response.json())
       .then(data => {
-          console.log(data)
           data.current.weather.map((weatherInfo: any) => setWeatherState(weatherInfo.main))
           setCloudsVolume(data.current.clouds);
 
