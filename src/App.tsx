@@ -182,9 +182,7 @@ function App() {
         cloudsVolume={cloudsVolume}
         actualDateInMs={actualDateInMs}
         nextDayData={nextDayData}
-        weatherStateNextDays={weatherStateNextDays}
         dayTime={dayTime.day}
-        nightTime={dayTime.night}
       />
       {!cityExists &&
         <div>

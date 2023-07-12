@@ -20,9 +20,7 @@ function Container(
     activeFiveDays,
     actualDateInMs,
     nextDayData,
-    weatherStateNextDays,
     dayTime,
-    nightTime
   }:
     {
       city: string,
@@ -34,9 +32,7 @@ function Container(
       activeFiveDays: boolean,
       actualDateInMs: number,
       nextDayData: Array<any>,
-      weatherStateNextDays: string[],
       dayTime: boolean,
-      nightTime: boolean
     }) {
 
   function getImgSrc() {
@@ -85,11 +81,8 @@ function Container(
           : activeFiveDays &&
           <div className={s.extraInfoContainer}>
             <WeatherCard
-              weatherState={weatherState}
-              temp={weatherCondition.temp}
               actualDateInMs={actualDateInMs}
               nextDayData={nextDayData}
-              weatherStateNextDays={weatherStateNextDays}
             />
           </div>
         }

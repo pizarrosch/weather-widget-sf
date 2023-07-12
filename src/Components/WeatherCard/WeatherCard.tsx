@@ -5,20 +5,25 @@ import sunImg from "../../assets/sun.png";
 import sunAndClouds from '../../assets/sun-with-clouds.png';
 import React from "react";
 
-function weatherCard({weatherState, temp, actualDateInMs, nextDayData, weatherStateNextDays}:
-                       {
-                         weatherState: string,
-                         temp: string,
-                         actualDateInMs: number,
-                         nextDayData: Array<any>,
-                         weatherStateNextDays: string[],
-                       }) {
+function weatherCard({actualDateInMs, nextDayData}: { actualDateInMs: number, nextDayData: Array<any> }) {
 
   const today = Date.now();
   const factor = today / actualDateInMs;
 
   function setKelvinToCelcius(kelvin: number) {
     return (kelvin - 273).toFixed(0);
+  }
+
+  function getIcon(date: any) {
+    switch (date.weather.main) {
+      case ('Rain'):
+        return rainImg;
+      case ('Clouds'):
+        if (date.clouds > 95) return cloudImg;
+        if (date.clouds < 95 && date.clouds > 0) return sunAndClouds;
+      default:
+        return sunImg
+    }
   }
 
   const slicedToFiveDaysArr = nextDayData.slice(1, 6);
@@ -34,12 +39,7 @@ function weatherCard({weatherState, temp, actualDateInMs, nextDayData, weatherSt
             <div key={index} className={s.weatherCardContainer}>
               <span className={s.weatherSuperscriptData}>{weekday}</span>
               <span className={s.weatherCardData}>{setKelvinToCelcius(date.temp.day)}°C</span>
-              <img src={
-                date.weather[0].main === 'Rain' ? rainImg :
-                  date.weather[0].main === 'Clouds' && date.clouds > 95 ? cloudImg :
-                    date.weather[0].main === 'Clouds' && date.clouds < 95 && date.clouds > 0 ? sunAndClouds : sunImg
-              }
-              />
+              <img src={getIcon(date)} alt={''}/>
             </div>
           )
 
