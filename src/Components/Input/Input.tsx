@@ -1,20 +1,21 @@
-import React, {ChangeEventHandler, KeyboardEventHandler} from "react";
+import React, {ChangeEventHandler, forwardRef, KeyboardEventHandler} from "react";
 import s from './Input.module.scss';
 
-function Input({onChange, onSubmit, value}: {
-  onChange: ChangeEventHandler,
-  onSubmit: KeyboardEventHandler,
-  value: string
-}) {
-  return (
-    <input
-      className={s.input}
-      onChange={onChange}
-      onKeyDown={onSubmit}
-      value={value}
-      placeholder='Search for the city here...'
-    />
-  )
+type Props = {
+    onSubmit: KeyboardEventHandler,
+}
+
+const Input = forwardRef((props: Props, ref: any) => {
+    return (
+        <input
+            className={s.input}
+            onKeyDown={props.onSubmit}
+            ref={ref}
+            placeholder='Search for the city here...'
+        />
+    )
+});
+{
 }
 
 export default Input;

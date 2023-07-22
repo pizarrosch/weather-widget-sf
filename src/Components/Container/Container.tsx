@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import s from './Container.module.scss';
 import rainImg from '../../assets/rain.png';
 import sunImg from '../../assets/sun.png';
@@ -45,7 +45,6 @@ function Container(
       default:
         return dayTime ? sunImg : theMoon;
     }
-
   }
 
   return (
